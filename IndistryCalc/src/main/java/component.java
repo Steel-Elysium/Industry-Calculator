@@ -11,26 +11,24 @@ import java.util.ArrayList;
  *
  * @author steel elysium
  */
-public class Reaction extends Item {
+public class component extends Item{
+
     
-    private int _outputAmount;
-    
-    
-    public Reaction(int buildTime, String name, int ID, int output) {
-        super(0, 0, buildTime, name, ID, 0); // Reations have not Time or Material Effencancy
-        this._outputAmount = output;
+    public component(int material, float time, int buildTime, String name, int ID) {
+        super(material, time, buildTime, name, ID, 0);
     }
 
     @Override
     public int NeededRuns(ArrayList<Item> lastStage) {
+       
         int neededItems = 0;
         
         for(Item currentItem : lastStage){
             if(currentItem._ID == super._ID){
                 neededItems += currentItem._amount;
             }
-        }
-        return (int) Math.ceil(_amount / (double)this._outputAmount);
+        }     
+        return neededItems;
     }
-    
+
 }
